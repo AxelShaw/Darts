@@ -9,5 +9,13 @@ async function callApi(endpoint, params = {}) {
     }
     
     const response = await fetch(url);
-    return await response.json();
+    const text = await response.text();
+    
+    // Debug: affiche la réponse brute si erreur JSON
+    try {
+        return JSON.parse(text);
+    } catch (e) {
+        console.error('Réponse API brute:', text);
+        throw new Error('JSON.parse: ' + text.substring(0, 100));
+    }
 }
