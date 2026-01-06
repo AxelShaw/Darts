@@ -3,7 +3,7 @@
         ENVIRONMENT
     */
     define('DIRECTORY', '/darts');
-    define('ENVIRONMENT', (!isset($_SERVER['SERVER_NAME']) || strstr($_SERVER['SERVER_NAME'], '.com') !== false) ? 'Production' : 'Development');
+    define('ENVIRONMENT', 'Production');
 
     /*
         ERRORS HANDLING
