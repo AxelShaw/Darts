@@ -1,8 +1,5 @@
 <?php
     require_once __DIR__.'/config.php';
-    require_once __DIR__.'/include/loader.php';
-
-    Buffering::enableOutput();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -16,6 +13,3 @@
     <p>Version: <?php echo APP_VERSION; ?></p>
 </body>
 </html>
-<?php
-    Buffering::disableOutput();
-?>

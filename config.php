@@ -2,7 +2,6 @@
     /*
         ENVIRONMENT
     */
-    define('DIRECTORY', '/darts');
     define('ENVIRONMENT', 'Production');
 
     /*
