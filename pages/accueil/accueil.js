@@ -9,7 +9,7 @@ async function loadAccueil() {
     const resultDiv = document.getElementById('result');
     
     try {
-        const data = await callApi('test');
+        const data = await api('test');
         
         if (data.success && data.data.length > 0) {
             resultDiv.innerHTML = '✅ API OK !<br>';
