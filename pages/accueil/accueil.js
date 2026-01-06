@@ -1,6 +1,7 @@
 // Page Accueil
 document.body.innerHTML = `
     <h1>Darts App</h1>
+    <div id="result">Chargement...</div>
 `;
 
 // Charger les données
