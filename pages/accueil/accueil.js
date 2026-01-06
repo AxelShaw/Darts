@@ -1,8 +1,6 @@
 // Page Accueil
 document.body.innerHTML = `
-    <h1>🎯 Darts App</h1>
-    <img src="img/remi.jpg" style="width: 500px; height: auto;">
-    <div id="result">Chargement...</div>
+    <h1>Darts App</h1>
 `;
 
 // Charger les données
