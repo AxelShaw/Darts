@@ -14,7 +14,7 @@ async function loadAccueil() {
         if (data.success && data.data.length > 0) {
             resultDiv.innerHTML = '✅ API OK !<br>';
             data.data.forEach(row => {
-                resultDiv.innerHTML += `<div>${row.test}</div>`;
+                resultDiv.innerHTML += `<div>${row.Nom}</div>`;
             });
         } else {
             resultDiv.innerHTML = 'Aucune donnée depuis l\'API';
