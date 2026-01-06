@@ -10,7 +10,6 @@
     define('APP_NAME', 'Darts App');
     
     // Version
-    $versionFile = __DIR__ . '/VERSION';
-    define('APP_VERSION', file_exists($versionFile) ? trim(file_get_contents($versionFile)) : '0.0.0');
+    define('APP_VERSION', trim(shell_exec('git describe --tags --abbrev=0 2>/dev/null') ?? '0.0.0'));
 ?>
 
