@@ -16,7 +16,7 @@
         SESSION
     */
     session_start();
-
+    
     /*
         DATABASE
     */
