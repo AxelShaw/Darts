@@ -6,7 +6,6 @@
     require_once __DIR__.'/../config.php';
     require_once __DIR__.'/db.php';
 
-    // Connexion DB
     try {
         $db = new DB();
     } catch (PDOException $e) {
@@ -27,7 +26,6 @@
     $file = __DIR__ . '/endpoints/' . $endpoint . '.php';
 
     if (file_exists($file)) {
-        // Exécuter l'endpoint avec gestion d'erreur
         try {
             require_once $file;
         } catch (PDOException $e) {
