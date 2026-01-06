@@ -1,7 +1,7 @@
 // Fonctions globales pour toutes les pages
 
 async function callApi(endpoint, params = {}) {
-    const url = new URL('/api/', window.location.origin);
+    const url = new URL('/api/index.php', window.location.origin);
     url.searchParams.set('e', endpoint);
     
     for (const [key, value] of Object.entries(params)) {
