@@ -9,6 +9,6 @@
     <title><?php echo APP_NAME; ?></title>
 </head>
 <body>
-    <img src="img/remi.jpg" alt="Rémi" style="max-width: 50%; height: auto;">
+    <img src="img/remi.jpg" alt="Rémi" style="width: 200px; height: auto;">
 </body>
 </html>
