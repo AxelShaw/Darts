@@ -9,7 +9,8 @@
     <title><?php echo APP_NAME; ?></title>
 </head>
 <body>
-    <h1>Hello World</h1>
-    <p>Version: <?php echo APP_VERSION; ?></p>
+    <h1>Darts</h1>
+    
+    <img src="img/remi.jpg" alt="Rémi" style="max-width: 100%; height: auto;">
 </body>
 </html>
