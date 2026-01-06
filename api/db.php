@@ -15,25 +15,15 @@ class DB {
         ]);
     }
     
-    public function query($sql, $params = []) {
+    public function get($sql, $params = []) {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($params);
         return $stmt->fetchAll();
     }
     
-    public function queryOne($sql, $params = []) {
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($params);
-        return $stmt->fetch();
-    }
-    
     public function execute($sql, $params = []) {
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute($params);
-    }
-    
-    public function lastId() {
-        return $this->pdo->lastInsertId();
     }
 }
 ?>

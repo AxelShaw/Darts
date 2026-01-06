@@ -9,8 +9,7 @@
 </head>
 <body>
     <script>
-        const APP_VERSION = '<?= APP_VERSION ?>';
-        console.log('Version:', APP_VERSION);
+        console.log('<?= APP_NAME ?> v<?= APP_VERSION ?>');
     </script>
     <script src="pages/app.js"></script>
     <script src="pages/accueil/accueil.js"></script>

@@ -1,20 +1,13 @@
-// Fonctions globales pour toutes les pages
+// API call
+async function api(endpoint, params = {}) {
+    const url = new URL('/api/init.php', location.origin);
 
-async function callApi(endpoint, params = {}) {
-    const url = new URL('/api/index.php', window.location.origin);
     url.searchParams.set('e', endpoint);
     
-    for (const [key, value] of Object.entries(params)) {
-        url.searchParams.set(key, value);
+    for (const key in params) {
+        url.searchParams.set(key, params[key]);
     }
     
     const response = await fetch(url);
-    const text = await response.text();
-
-    try {
-        return JSON.parse(text);
-    } catch (e) {
-        console.error('Réponse API brute:', text);
-        throw new Error('JSON.parse: ' + text.substring(0, 100));
-    }
+    return response.json();
 }
