@@ -1,13 +1,11 @@
-FROM php:8.3-apache
+FROM php:8.3-cli
 
 # Installer les extensions MySQL
 RUN docker-php-ext-install pdo pdo_mysql
 
 # Copier les fichiers
-COPY . /var/www/html/
+WORKDIR /app
+COPY . .
 
-# Activer mod_rewrite (optionnel)
-RUN a2enmod rewrite
-
-# Port
-EXPOSE 80
+# Lancer le serveur PHP intégré
+CMD php -S 0.0.0.0:$PORT -t .
