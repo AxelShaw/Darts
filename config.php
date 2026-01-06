@@ -18,20 +18,13 @@
     session_start();
 
     /*
-        DATABASE (à configurer selon tes besoins)
+        DATABASE
     */
-    // if(ENVIRONMENT == 'Production') {
-    //     define('DB_HOST', 'localhost');
-    //     define('DB_NAME', 'darts_prod');
-    //     define('DB_USER', 'root');
-    //     define('DB_PASS', '');
-    // }
-    // else {
-    //     define('DB_HOST', 'localhost');
-    //     define('DB_NAME', 'darts_dev');
-    //     define('DB_USER', 'root');
-    //     define('DB_PASS', '');
-    // }
+    define('DB_HOST', getenv('MYSQL_HOST') ?: 'localhost');
+    define('DB_PORT', getenv('MYSQL_PORT') ?: '3306');
+    define('DB_NAME', getenv('MYSQL_DATABASE') ?: 'railway');
+    define('DB_USER', getenv('MYSQL_USER') ?: 'root');
+    define('DB_PASS', getenv('MYSQL_PASSWORD') ?: '');
 
     /*
         APP CONFIG
