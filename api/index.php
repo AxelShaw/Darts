@@ -3,16 +3,9 @@
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 
-    // Config DB (sans session)
-    define('DB_HOST', getenv('MYSQL_HOST') ?: 'localhost');
-    define('DB_PORT', getenv('MYSQL_PORT') ?: '3306');
-    define('DB_NAME', getenv('MYSQL_DATABASE') ?: 'railway');
-    define('DB_USER', getenv('MYSQL_USER') ?: 'root');
-    define('DB_PASS', getenv('MYSQL_PASSWORD') ?: '');
-
+    require_once __DIR__.'/../config.php';
     require_once __DIR__.'/db.php';
 
-    // Connexion DB avec gestion d'erreur JSON
     try {
         $db = new DB();
     } catch (Exception $e) {

@@ -12,11 +12,6 @@
     ini_set('display_startup_errors', ENVIRONMENT != 'Production' ? 1 : 0);
 
     /*
-        SESSION
-    */
-    session_start();
-    
-    /*
         DATABASE
     */
     define('DB_HOST', getenv('MYSQL_HOST') ?: 'localhost');
