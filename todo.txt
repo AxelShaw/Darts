@@ -1,0 +1,5 @@
+TODO LIST - Darts App
+======================
+
+[ ] Faire le front correctement
+[ ] Améliorer upload serveur et vitesse serveur
