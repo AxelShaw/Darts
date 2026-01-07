@@ -4,3 +4,87 @@ TODO LIST - Darts App
 [ ] Faire le front correctement
 [ ] Améliorer upload serveur et vitesse serveur
 [ ] Tag avec les changement list
+
+
+=====================
+🚀 Release Manager - Cahier des Charges
+Objectif
+Application web interne pour gérer les releases Git. Permet de sélectionner un repo, choisir une branche à merger dans main/master, définir un tag de version et créer une release avec description personnalisée.
+Stack Technique
+Backend : PHP (même structure que le projet Darts)
+Frontend : JavaScript vanilla (classes ES6, même pattern que app.js)
+API externe : GitHub API v3 (REST)
+Authentification : Token GitHub personnel (PAT) stocké dans config.php
+Structure du projet
+ReleaseManager/├── index.php                    # Page principale├── config.php                   # Configuration (token GitHub, liste repos)├── api/│   ├── init.php                 # Router API│   ├── github.php               # Classe helper pour appels GitHub API│   └── endpoints/│       ├── repos.php            # GET - Liste les repos configurés│       ├── branches.php         # GET - Branches d'un repo (param: repo)│       ├── tags.php             # GET - Tags d'un repo + dernier tag (param: repo)│       ├── merge.php            # POST - Merge branch dans main (params: repo, branch)│       └── release.php          # POST - Créer release (params: repo, tag, title, description)└── pages/    ├── app.js                   # Classes App et Page (copier de Darts)    └── manager/        ├── manager.js           # Page principale Release Manager        └── manager.css          # Styles
+Configuration (config.php)
+<?phpdefine('APP_NAME', 'Release Manager');// Token GitHub avec permissions: repo, write:packagesdefine('GITHUB_TOKEN', 'ghp_xxxxxxxxxxxxxxxxxxxx');// Organisation ou utilisateur GitHubdefine('GITHUB_OWNER', 'ton-username-ou-org');// Liste des repos autorisés (pour éviter d'exposer tous les repos)define('ALLOWED_REPOS', [    'API',    'Booking',     'Panel',    'AccountPage',    'Darts']);
+Endpoints API
+1. GET /api/init.php?e=repos
+Retourne : Liste des repos configurés
+{    "success": true,    "repos": ["API", "Booking", "Panel", "AccountPage", "Darts"]}
+2. GET /api/init.php?e=branches&repo=API
+Retourne : Branches du repo (exclure main/master)
+{    "success": true,    "repo": "API",    "default_branch": "main",    "branches": [        {"name": "feature/new-auth", "last_commit": "2026-01-05", "author": "john"},        {"name": "fix/bug-123", "last_commit": "2026-01-06", "author": "jane"}    ]}
+3. GET /api/init.php?e=tags&repo=API
+Retourne : Tags existants + suggestions de nouveaux tags
+{    "success": true,    "repo": "API",    "latest_tag": "v1.2.3",    "tags": ["v1.2.3", "v1.2.2", "v1.2.1", "v1.2.0"],    "suggestions": {        "patch": "v1.2.4",        "minor": "v1.3.0",        "major": "v2.0.0"    }}
+4. POST /api/init.php?e=merge
+Body :
+{    "repo": "API",    "branch": "feature/new-auth"}
+Action : Merge la branche dans main/master via GitHub API
+Retourne :
+{    "success": true,    "message": "Branch feature/new-auth merged into main",    "sha": "abc123..."}
+5. POST /api/init.php?e=release
+Body :
+{    "repo": "API",    "tag": "v1.2.4",    "title": "Version 1.2.4",    "description": "- Fix bug authentification\n- Nouvelle feature X",    "prerelease": false}
+Action : Crée un tag + release sur GitHub
+Retourne :
+{    "success": true,    "release_url": "https://github.com/owner/API/releases/tag/v1.2.4"}
+Interface Utilisateur
+Layout
+Sidebar : Logo + navigation (juste "Release Manager" pour l'instant)
+Main : Formulaire en étapes verticales
+Formulaire (une seule page, étapes visibles)
+┌─────────────────────────────────────────────────────────────────┐│  🚀 Release Manager                                             │├─────────────────────────────────────────────────────────────────┤│                                                                 ││  ÉTAPE 1 - Sélectionner le repo                                ││  ┌─────────────────────────────────────────────────────────┐   ││  │ ▼  API                                                  │   ││  └─────────────────────────────────────────────────────────┘   ││                                                                 ││  ÉTAPE 2 - Sélectionner la branche à merger                    ││  ┌─────────────────────────────────────────────────────────┐   ││  │ ▼  feature/new-auth                                     │   ││  └─────────────────────────────────────────────────────────┘   ││  ℹ️ Cette branche sera mergée dans: main                        ││                                                                 ││  ÉTAPE 3 - Choisir le tag                                      ││  Dernier tag: v1.2.3                                           ││  ┌─────────────────────────────────────────────────────────┐   ││  │ ○ v1.2.4 (patch)                                        │   ││  │ ○ v1.3.0 (minor)                                        │   ││  │ ○ v2.0.0 (major)                                        │   ││  │ ○ Custom: [_______________]                             │   ││  └─────────────────────────────────────────────────────────┘   ││                                                                 ││  ÉTAPE 4 - Description de la release                           ││  ┌─────────────────────────────────────────────────────────┐   ││  │ ## Nouveautés                                           │   ││  │ - Fix bug authentification                              │   ││  │ - Nouvelle feature X                                    │   ││  │                                                         │   ││  │ ## Corrections                                          │   ││  │ - Amélioration performances                             │   ││  └─────────────────────────────────────────────────────────┘   ││  ℹ️ Markdown supporté                                           ││                                                                 ││  ☐ Pre-release                                                  ││                                                                 ││  ┌─────────────────────────────────────────────────────────┐   ││  │              🚀 CRÉER LA RELEASE                        │   ││  └─────────────────────────────────────────────────────────┘   ││                                                                 │└─────────────────────────────────────────────────────────────────┘
+Comportement dynamique
+Au chargement : Charger la liste des repos
+Quand repo sélectionné : Charger les branches + tags de ce repo
+Quand branche sélectionnée : Afficher infos de la branche (dernier commit, auteur)
+Bouton "Créer" :
+Afficher loader
+Appeler merge API
+Si OK, appeler release API
+Afficher succès avec lien vers la release GitHub
+Ou afficher erreur
+États d'erreur à gérer
+Token GitHub invalide
+Repo non trouvé
+Branche déjà mergée
+Conflits de merge
+Tag déjà existant
+Rate limit GitHub API
+GitHub API - Appels nécessaires
+Classe PHP helper (api/github.php)
+class GitHub {    private static function request($method, $endpoint, $data = null) {        $ch = curl_init();        curl_setopt($ch, CURLOPT_URL, 'https://api.github.com' . $endpoint);        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);        curl_setopt($ch, CURLOPT_HTTPHEADER, [            'Authorization: Bearer ' . GITHUB_TOKEN,            'Accept: application/vnd.github.v3+json',            'User-Agent: ReleaseManager'        ]);                if ($method === 'POST') {            curl_setopt($ch, CURLOPT_POST, true);            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));        }                $response = curl_exec($ch);        curl_close($ch);                return json_decode($response, true);    }        // Lister les branches    public static function getBranches($repo) {        return self::request('GET', '/repos/' . GITHUB_OWNER . '/' . $repo . '/branches');    }        // Lister les tags    public static function getTags($repo) {        return self::request('GET', '/repos/' . GITHUB_OWNER . '/' . $repo . '/tags');    }        // Merger une branche    public static function merge($repo, $branch, $base = 'main') {        return self::request('POST', '/repos/' . GITHUB_OWNER . '/' . $repo . '/merges', [            'base' => $base,            'head' => $branch,            'commit_message' => 'Merge ' . $branch . ' into ' . $base        ]);    }        // Créer une release    public static function createRelease($repo, $tag, $title, $description, $prerelease = false) {        return self::request('POST', '/repos/' . GITHUB_OWNER . '/' . $repo . '/releases', [            'tag_name' => $tag,            'name' => $title,            'body' => $description,            'prerelease' => $prerelease        ]);    }}
+Style CSS (thème sombre, moderne)
+Background : #0d1117 (GitHub dark)
+Cards : #161b22 avec border #30363d
+Accent : #238636 (vert GitHub)
+Text : #c9d1d9
+Inputs : Style GitHub dark
+Bouton principal : Vert avec hover
+Étapes de développement
+✅ Créer la structure de fichiers
+✅ Configurer config.php avec token GitHub
+✅ Créer la classe GitHub helper
+✅ Créer les endpoints API (repos, branches, tags, merge, release)
+✅ Créer l'interface utilisateur
+✅ Connecter le frontend aux APIs
+✅ Gérer les erreurs et feedback utilisateur
+✅ Tester avec un vrai repo
+Token GitHub requis
+Créer un Personal Access Token sur GitHub avec les permissions :
+repo (accès complet aux repos privés)
+write:packages (optionnel, si besoin)
+URL : https://github.com/settings/tokens/new
