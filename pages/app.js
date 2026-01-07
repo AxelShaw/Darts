@@ -11,7 +11,7 @@ async function api(endpoint, params = {}) {
     return response.json();
 }
 
-// calsse base page
+// class base page
 class Page {
     static name() {
         return 'Page';
@@ -46,7 +46,6 @@ class App {
     static pages = {};
     
     static init() {
-        // Charger la page par défaut
         App.showPage('Accueil');
     }
     
@@ -55,12 +54,10 @@ class App {
     }
     
     static showPage(pageName) {
-        // Fermer la page actuelle
         if (App.currentPage) {
             App.currentPage.onClose();
         }
         
-        // Ouvrir la nouvelle page
         const page = App.pages[pageName];
         if (page) {
             App.currentPage = page;
