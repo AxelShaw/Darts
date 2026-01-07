@@ -1,44 +1,30 @@
-// Page Accueil
-document.body.innerHTML = `
-    <div class="container">
-        <h1>🎯 Darts App</h1>
-        <p class="version">Version: <span id="current-version">...</span></p>
-        
-        <h2>📋 Changelog</h2>
-        <div id="releases">Chargement des releases...</div>
-    </div>
-`;
-
-// Charger les releases
-async function loadAccueil() {
-    const releasesDiv = document.getElementById('releases');
-    const versionSpan = document.getElementById('current-version');
+class Accueil extends Page {
+    static name() {
+        return 'Accueil';
+    }
     
-    try {
-        console.log('--- DEBUG RELEASES ---');
-        const response = await fetch('/api/init.php?e=releases');
-        console.log('Response status:', response.status);
-        console.log('Response ok:', response.ok);
+    static icon() {
+        return '🏠';
+    }
+    
+    static async onOpen() {
+        let html = '';
+        html += '<h1>🎯 Darts App</h1>';
+        html += '<p class="version">Version: <span id="current-version">...</span></p>';
+        html += '<h2>📋 Changelog</h2>';
+        html += '<div id="releases">Chargement...</div>';
         
-        const text = await response.text();
-        console.log('Raw response:', text);
+        Accueil.setContent(html);
         
-        let data;
-        try {
-            data = JSON.parse(text);
-            console.log('Parsed data:', data);
-        } catch (e) {
-            console.error('JSON parse error:', e);
-            releasesDiv.innerHTML = `<p class="error">Erreur JSON: ${e.message}<br><pre>${text}</pre></p>`;
-            return;
-        }
+        // Charger les releases
+        const data = await api('releases');
         
         if (data.success) {
-            versionSpan.textContent = data.current_version;
+            document.getElementById('current-version').textContent = data.current_version;
+            
+            let releasesHtml = '';
             
             if (data.releases.length > 0) {
-                let html = '';
-                
                 data.releases.forEach(release => {
                     const date = new Date(release.date).toLocaleDateString('fr-FR', {
                         year: 'numeric',
@@ -46,44 +32,40 @@ async function loadAccueil() {
                         day: 'numeric'
                     });
                     
-                    html += `
-                        <div class="release ${release.prerelease ? 'prerelease' : ''}">
-                            <div class="release-header">
-                                <span class="release-tag">${release.tag}</span>
-                                ${release.prerelease ? '<span class="badge-prerelease">Pre-release</span>' : ''}
-                                <span class="release-date">${date}</span>
-                            </div>
-                            <h3 class="release-name">${release.name || release.tag}</h3>
-                            <div class="release-description">${formatDescription(release.description)}</div>
-                            <a href="${release.url}" target="_blank" class="release-link">Voir sur GitHub →</a>
-                        </div>
-                    `;
+                    releasesHtml += '<div class="release">';
+                    releasesHtml += '<div class="release-header">';
+                    releasesHtml += '<span class="release-tag">' + release.tag + '</span>';
+                    if (release.prerelease) {
+                        releasesHtml += '<span class="badge-prerelease">Pre-release</span>';
+                    }
+                    releasesHtml += '<span class="release-date">' + date + '</span>';
+                    releasesHtml += '</div>';
+                    releasesHtml += '<h3 class="release-name">' + (release.name || release.tag) + '</h3>';
+                    releasesHtml += '<div class="release-description">' + Accueil.formatDescription(release.description) + '</div>';
+                    releasesHtml += '<a href="' + release.url + '" target="_blank" class="release-link">Voir sur GitHub →</a>';
+                    releasesHtml += '</div>';
                 });
-                
-                releasesDiv.innerHTML = html;
             } else {
-                releasesDiv.innerHTML = '<p class="no-releases">Aucune release disponible. Crée ta première release sur GitHub !</p>';
+                releasesHtml = '<p class="no-releases">Aucune release disponible.</p>';
             }
+            
+            document.getElementById('releases').innerHTML = releasesHtml;
         } else {
-            console.error('API error:', data);
-            releasesDiv.innerHTML = `<p class="error">Erreur: ${data.error}</p><pre>${JSON.stringify(data.debug, null, 2)}</pre>`;
+            document.getElementById('releases').innerHTML = '<p class="error">Erreur: ' + data.error + '</p>';
         }
-    } catch (error) {
-        console.error('Fetch error:', error);
-        releasesDiv.innerHTML = `<p class="error">Erreur: ${error.message}</p>`;
+    }
+    
+    static formatDescription(text) {
+        if (!text) return '<em>Pas de description</em>';
+        
+        return text
+            .replace(/\n/g, '<br>')
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/^- (.*)/gm, '• $1')
+            .replace(/`(.*?)`/g, '<code>$1</code>');
     }
 }
 
-// Formater la description (markdown basique)
-function formatDescription(text) {
-    if (!text) return '<em>Pas de description</em>';
-    
-    return text
-        .replace(/\n/g, '<br>')
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.*?)\*/g, '<em>$1</em>')
-        .replace(/^- (.*)/gm, '• $1')
-        .replace(/`(.*?)`/g, '<code>$1</code>');
-}
-
-loadAccueil();
+// Enregistrer la page
+App.register(Accueil);
