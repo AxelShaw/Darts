@@ -9,9 +9,9 @@ class Accueil extends Page {
     
     static async onOpen() {
         let html = '';
-        html += '<h1>🎯 Darts App</h1>';
+        html += '<h1>Darts App</h1>';
         html += '<p class="version">Version: <span id="current-version">...</span></p>';
-        html += '<h2>📋 Changelog</h2>';
+        html += '<h2>Changelog</h2>';
         html += '<div id="releases">Chargement...</div>';
         
         Accueil.setContent(html);
