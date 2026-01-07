@@ -9,7 +9,7 @@
 </head>
 <body>
     <script>
-        console.log('<?= APP_NAME ?> v<?= APP_VERSION ?>');
+        console.log('<?= APP_NAME ?>');
     </script>
     <script src="pages/app.js"></script>
     <script src="pages/accueil/accueil.js"></script>

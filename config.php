@@ -9,8 +9,5 @@
     // App
     define('APP_NAME', 'Darts App');
     
-    // Version
-    $versionFile = __DIR__ . '/VERSION';
-    define('APP_VERSION', file_exists($versionFile) ? trim(file_get_contents($versionFile)) : (getenv('APP_VERSION') ?: '0.0.0'));
 ?>
 
