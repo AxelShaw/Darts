@@ -16,7 +16,6 @@ class Accueil extends Page {
         
         Accueil.setContent(html);
         
-        // Charger les releases
         const data = await api('releases');
         
         if (data.success) {
@@ -42,7 +41,6 @@ class Accueil extends Page {
                     releasesHtml += '</div>';
                     releasesHtml += '<h3 class="release-name">' + (release.name || release.tag) + '</h3>';
                     releasesHtml += '<div class="release-description">' + Accueil.formatDescription(release.description) + '</div>';
-                    releasesHtml += '<a href="' + release.url + '" target="_blank" class="release-link">Voir sur GitHub →</a>';
                     releasesHtml += '</div>';
                 });
             } else {
@@ -67,5 +65,4 @@ class Accueil extends Page {
     }
 }
 
-// Enregistrer la page
 App.register(Accueil);

@@ -1,6 +1,4 @@
-// ============================================
-// API Helper
-// ============================================
+// API
 async function api(endpoint, params = {}) {
     const url = new URL('/api/init.php', location.origin);
     url.searchParams.set('e', endpoint);
@@ -13,9 +11,7 @@ async function api(endpoint, params = {}) {
     return response.json();
 }
 
-// ============================================
-// Classe de base Page (comme Module dans Panel)
-// ============================================
+// calsse base page
 class Page {
     static name() {
         return 'Page';
@@ -38,17 +34,13 @@ class Page {
     }
     
     static onOpen() {
-        // Override dans les pages
     }
     
     static onClose() {
-        // Override dans les pages
     }
 }
 
-// ============================================
-// Gestionnaire App (comme Panel)
-// ============================================
+// Gestion app
 class App {
     static currentPage = null;
     static pages = {};
