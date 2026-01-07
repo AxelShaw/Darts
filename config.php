@@ -9,8 +9,5 @@
     // App
     define('APP_NAME', 'Darts App');
     
-    // Version
-    $gitTag = @shell_exec('git describe --tags --abbrev=0 2>/dev/null');
-    define('APP_VERSION', $gitTag ? trim($gitTag) : 'dev');
 ?>
 
