@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="pages/accueil/accueil.css">
 </head>
 <body>
-    <script>
-        console.log('<?= APP_NAME ?>');
-    </script>
     <script src="pages/app.js"></script>
+    <script>
+        api('releases').then(data => {
+            console.log('<?= APP_NAME ?> (' + (data.current_version || 'dev') + ')');
+        });
+    </script>
     <script src="pages/accueil/accueil.js"></script>
 </body>
 </html>
