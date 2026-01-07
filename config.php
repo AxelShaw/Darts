@@ -9,5 +9,8 @@
     // App
     define('APP_NAME', 'Darts App');
     
+    // Version (dernier commit Git)
+    $gitCommit = @shell_exec('git rev-parse --short HEAD 2>/dev/null');
+    define('APP_VERSION', $gitCommit ? trim($gitCommit) : 'dev');
 ?>
 
