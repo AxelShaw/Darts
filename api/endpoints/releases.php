@@ -1,6 +1,6 @@
 <?php
     // Récupère les releases depuis GitHub
-    $owner = 'AxelShaw0';
+    $owner = 'AxelShaw';
     $repo = 'Darts';
     
     $url = "https://api.github.com/repos/{$owner}/{$repo}/releases";
