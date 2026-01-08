@@ -11,7 +11,7 @@
     <div id="sidebar">
         <div class="logo">🎯 <?= APP_NAME ?></div>
         <div class="nav-item active" data-page="Accueil" onclick="App.showPage('Accueil')">
-            🏠 Accueil
+            Accueil
         </div>
     </div>
     
