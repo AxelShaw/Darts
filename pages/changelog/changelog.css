@@ -1,83 +1,104 @@
-/* Changelog Styles */
-.changelog-container h1 {
-    color: #e94560;
-    margin-bottom: 10px;
+/* Changelog Styles - BattleKart Style */
+.changelog-container .page-header {
+    padding: 20px 30px;
+    border-bottom: 1px solid #eee;
+    margin: -30px -30px 30px;
+}
+
+.changelog-container .page-header h1 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
 }
 
 .changelog-container .version {
-    color: #888;
-    margin-bottom: 30px;
+    color: #999;
+    font-size: 0.85rem;
 }
 
 .changelog-container .version span {
-    color: #e94560;
-    font-weight: bold;
+    color: #9b59b6;
+    font-weight: 600;
 }
 
 /* Release Card */
 .release {
-    background: #16213e;
+    background: #fff;
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 15px;
-    border: 1px solid #0f3460;
+    border: 1px solid #eee;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .release-header {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .release-tag {
-    background: #e94560;
+    background: #9b59b6;
     color: white;
     padding: 4px 10px;
     border-radius: 4px;
-    font-size: 0.85rem;
-    font-weight: bold;
+    font-size: 0.8rem;
+    font-weight: 600;
 }
 
 .badge-prerelease {
     background: #f39c12;
-    color: #1a1a2e;
+    color: #fff;
     padding: 3px 8px;
     border-radius: 4px;
-    font-size: 0.75rem;
-    font-weight: bold;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 .release-date {
-    color: #888;
-    font-size: 0.85rem;
+    color: #999;
+    font-size: 0.8rem;
     margin-left: auto;
 }
 
 .release-name {
-    color: #eaeaea;
+    color: #333;
+    font-size: 1rem;
+    font-weight: 600;
     margin-bottom: 10px;
 }
 
 .release-description {
-    color: #aaa;
-    line-height: 1.6;
+    color: #666;
+    line-height: 1.7;
+    font-size: 0.9rem;
 }
 
 .release-description code {
-    background: #0f3460;
+    background: #f5f5f5;
     padding: 2px 6px;
     border-radius: 3px;
-    font-family: 'Consolas', monospace;
-    font-size: 0.9em;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.85em;
+    color: #9b59b6;
 }
 
-.no-releases,
-.error {
-    color: #888;
+.no-releases {
+    color: #999;
     font-style: italic;
+    padding: 20px;
+    text-align: center;
+    background: #f9f9f9;
+    border-radius: 8px;
 }
 
 .error {
-    color: #e94560;
+    color: #e74c3c;
+    padding: 20px;
+    background: #fdf2f2;
+    border-radius: 8px;
+    border: 1px solid #f5c6cb;
 }

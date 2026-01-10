@@ -17,8 +17,14 @@ class Accueil extends Page {
             { src: 'img/téléchargement (3).png', name: 'téléchargement (3).png' }
         ];
         
-        let html = '<div class="loading-gallery">';
-        html += '<h1>Images de Loading</h1>';
+        let html = '<div class="page-header">';
+        html += '<h1>Accueil</h1>';
+        html += '<p>Gestion des images de loading</p>';
+        html += '</div>';
+        
+        html += '<div style="padding: 30px;">';
+        html += '<div class="loading-gallery">';
+        html += '<h2>Images disponibles</h2>';
         
         images.forEach(img => {
             html += '<div class="loading-card">';
@@ -27,6 +33,7 @@ class Accueil extends Page {
             html += '</div>';
         });
         
+        html += '</div>';
         html += '</div>';
         
         Accueil.setContent(html);

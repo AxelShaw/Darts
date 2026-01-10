@@ -9,8 +9,10 @@ class Changelog extends Page {
     
     static async onOpen() {
         let html = '<div class="changelog-container">';
+        html += '<div class="page-header">';
         html += '<h1>Changelog</h1>';
-        html += '<p class="version">Version: <span id="current-version">...</span></p>';
+        html += '<p class="version">Version actuelle: <span id="current-version">...</span></p>';
+        html += '</div>';
         html += '<div id="releases">Chargement...</div>';
         html += '</div>';
         
