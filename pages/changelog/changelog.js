@@ -33,9 +33,11 @@ class Changelog extends Page {
                         day: 'numeric'
                     });
                     
+                    const displayTag = release.tag.replace(/^v/, '');
+                    
                     releasesHtml += '<div class="release">';
                     releasesHtml += '<div class="release-header">';
-                    releasesHtml += '<span class="release-tag">' + release.tag + '</span>';
+                    releasesHtml += '<span class="release-tag">' + displayTag + '</span>';
                     if (release.prerelease) {
                         releasesHtml += '<span class="badge-prerelease">Pre-release</span>';
                     }
@@ -59,10 +61,10 @@ class Changelog extends Page {
         if (!text) return '<em>Pas de description</em>';
         
         return text
+            .replace(/^- (.*)/gm, '• $1')
             .replace(/\n/g, '<br>')
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
             .replace(/\*(.*?)\*/g, '<em>$1</em>')
-            .replace(/^- (.*)/gm, '• $1')
             .replace(/`(.*?)`/g, '<code>$1</code>');
     }
 }
