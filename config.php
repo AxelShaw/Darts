@@ -7,7 +7,7 @@
     define('DB_PASS', getenv('MYSQL_PASSWORD'));
 
     // App
-    define('APP_NAME', 'Darts App');
+    define('APP_NAME', 'Fumier Darts');
     
 ?>
 
