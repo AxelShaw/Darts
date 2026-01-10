@@ -25,7 +25,7 @@
         <div id="content"></div>
         
         <div id="loading">
-            <div class="spinner"></div>
+            <img src="img/images.jpg" alt="Chargement..." class="loading-img">
         </div>
     </div>
     

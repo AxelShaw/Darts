@@ -77,3 +77,24 @@ body {
     color: #9b59b6;
     font-weight: 600;
 }
+
+/* Loading */
+#loading {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
