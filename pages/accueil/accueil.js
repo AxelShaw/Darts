@@ -4,64 +4,15 @@ class Accueil extends Page {
     }
     
     static icon() {
-        return '🏠';
+        return '';
     }
     
     static async onOpen() {
-        let html = '';
-        html += '<h1>Darts App</h1>';
-        html += '<p class="version">Version: <span id="current-version">...</span></p>';
-        html += '<h2>Changelog</h2>';
-        html += '<div id="releases">Chargement...</div>';
+        let html = '<div class="page-header">';
+        html += '<h1>Accueil</h1>';
+        html += '</div>';
         
         Accueil.setContent(html);
-        
-        const data = await api('releases');
-        
-        if (data.success) {
-            document.getElementById('current-version').textContent = data.current_version;
-            
-            let releasesHtml = '';
-            
-            if (data.releases.length > 0) {
-                data.releases.forEach(release => {
-                    const date = new Date(release.date).toLocaleDateString('fr-FR', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                    });
-                    
-                    releasesHtml += '<div class="release">';
-                    releasesHtml += '<div class="release-header">';
-                    releasesHtml += '<span class="release-tag">' + release.tag + '</span>';
-                    if (release.prerelease) {
-                        releasesHtml += '<span class="badge-prerelease">Pre-release</span>';
-                    }
-                    releasesHtml += '<span class="release-date">' + date + '</span>';
-                    releasesHtml += '</div>';
-                    releasesHtml += '<h3 class="release-name">' + (release.name || release.tag) + '</h3>';
-                    releasesHtml += '<div class="release-description">' + Accueil.formatDescription(release.description) + '</div>';
-                    releasesHtml += '</div>';
-                });
-            } else {
-                releasesHtml = '<p class="no-releases">Aucune release disponible.</p>';
-            }
-            
-            document.getElementById('releases').innerHTML = releasesHtml;
-        } else {
-            document.getElementById('releases').innerHTML = '<p class="error">Erreur: ' + data.error + '</p>';
-        }
-    }
-    
-    static formatDescription(text) {
-        if (!text) return '<em>Pas de description</em>';
-        
-        return text
-            .replace(/\n/g, '<br>')
-            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\*(.*?)\*/g, '<em>$1</em>')
-            .replace(/^- (.*)/gm, '• $1')
-            .replace(/`(.*?)`/g, '<code>$1</code>');
     }
 }
 

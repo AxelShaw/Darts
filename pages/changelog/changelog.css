@@ -1,0 +1,77 @@
+/* Changelog Styles  */
+.changelog-container .page-header {
+    padding: 20px 30px;
+    border-bottom: 1px solid #eee;
+    margin: -30px -30px 30px;
+}
+
+.changelog-container .page-header h1 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.changelog-container .version {
+    color: #999;
+    font-size: 0.85rem;
+}
+
+.changelog-container .version span {
+    color: #9b59b6;
+    font-weight: 600;
+}
+
+/* Release Card */
+.release {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid #eee;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.release-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.release-tag {
+    background: #9b59b6;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.release-date {
+    color: #999;
+    font-size: 0.8rem;
+    margin-left: auto;
+}
+
+.release-name {
+    color: #333;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.release-description {
+    color: #666;
+    line-height: 1.7;
+    font-size: 0.9rem;
+}
+
+.release-description code {
+    background: #f5f5f5;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.85em;
+    color: #9b59b6;
+}
