@@ -25,7 +25,7 @@
         <div id="content"></div>
         
         <div id="loading">
-            <img src="img/images.jpg" alt="Chargement..." class="loading-img">
+            <img src="img/images.png" alt="Chargement..." class="loading-img">
         </div>
     </div>
     
