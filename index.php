@@ -11,7 +11,6 @@
 <body>
     <div id="sidebar">
         <div class="logo"><?= APP_NAME ?></div>
-        <div class="section-title">Menu</div>
         <div class="nav-item active" data-page="Accueil" onclick="App.showPage('Accueil')">
             Accueil
         </div>
