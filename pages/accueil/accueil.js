@@ -8,10 +8,25 @@ class Accueil extends Page {
     }
     
     static async onOpen() {
-        let html = '';
-        html += '<div id="loading-test">';
-        html += '<img src="assets/loading.gif" alt="Loading...">';
-        html += '<p>Chargement...</p>';
+        const images = [
+            { src: 'img/images.jpg', name: 'images.jpg' },
+            { src: 'img/images.png', name: 'images.png' },
+            { src: 'img/téléchargement.png', name: 'téléchargement.png' },
+            { src: 'img/téléchargement (1).png', name: 'téléchargement (1).png' },
+            { src: 'img/téléchargement (2).png', name: 'téléchargement (2).png' },
+            { src: 'img/téléchargement (3).png', name: 'téléchargement (3).png' }
+        ];
+        
+        let html = '<div class="loading-gallery">';
+        html += '<h1>Images de Loading</h1>';
+        
+        images.forEach(img => {
+            html += '<div class="loading-card">';
+            html += '<img src="' + img.src + '" alt="' + img.name + '">';
+            html += '<div class="card-name">' + img.name + '</div>';
+            html += '</div>';
+        });
+        
         html += '</div>';
         
         Accueil.setContent(html);

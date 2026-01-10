@@ -1,0 +1,83 @@
+/* Changelog Styles */
+.changelog-container h1 {
+    color: #e94560;
+    margin-bottom: 10px;
+}
+
+.changelog-container .version {
+    color: #888;
+    margin-bottom: 30px;
+}
+
+.changelog-container .version span {
+    color: #e94560;
+    font-weight: bold;
+}
+
+/* Release Card */
+.release {
+    background: #16213e;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid #0f3460;
+}
+
+.release-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.release-tag {
+    background: #e94560;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.badge-prerelease {
+    background: #f39c12;
+    color: #1a1a2e;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.release-date {
+    color: #888;
+    font-size: 0.85rem;
+    margin-left: auto;
+}
+
+.release-name {
+    color: #eaeaea;
+    margin-bottom: 10px;
+}
+
+.release-description {
+    color: #aaa;
+    line-height: 1.6;
+}
+
+.release-description code {
+    background: #0f3460;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Consolas', monospace;
+    font-size: 0.9em;
+}
+
+.no-releases,
+.error {
+    color: #888;
+    font-style: italic;
+}
+
+.error {
+    color: #e94560;
+}
