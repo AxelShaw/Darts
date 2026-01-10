@@ -1,4 +1,4 @@
-/* Changelog Styles - BattleKart Style */
+/* Changelog Styles  */
 .changelog-container .page-header {
     padding: 20px 30px;
     border-bottom: 1px solid #eee;
@@ -48,16 +48,6 @@
     font-weight: 600;
 }
 
-.badge-prerelease {
-    background: #f39c12;
-    color: #fff;
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
 .release-date {
     color: #999;
     font-size: 0.8rem;
@@ -84,21 +74,4 @@
     font-family: 'Consolas', 'Monaco', monospace;
     font-size: 0.85em;
     color: #9b59b6;
-}
-
-.no-releases {
-    color: #999;
-    font-style: italic;
-    padding: 20px;
-    text-align: center;
-    background: #f9f9f9;
-    border-radius: 8px;
-}
-
-.error {
-    color: #e74c3c;
-    padding: 20px;
-    background: #fdf2f2;
-    border-radius: 8px;
-    border: 1px solid #f5c6cb;
 }

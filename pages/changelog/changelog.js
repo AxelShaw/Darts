@@ -38,17 +38,12 @@ class Changelog extends Page {
                     releasesHtml += '<div class="release">';
                     releasesHtml += '<div class="release-header">';
                     releasesHtml += '<span class="release-tag">' + displayTag + '</span>';
-                    if (release.prerelease) {
-                        releasesHtml += '<span class="badge-prerelease">Pre-release</span>';
-                    }
                     releasesHtml += '<span class="release-date">' + date + '</span>';
                     releasesHtml += '</div>';
                     releasesHtml += '<h3 class="release-name">' + (release.name || release.tag) + '</h3>';
                     releasesHtml += '<div class="release-description">' + Changelog.formatDescription(release.description) + '</div>';
                     releasesHtml += '</div>';
                 });
-            } else {
-                releasesHtml = '<p class="no-releases">Aucune release disponible.</p>';
             }
             
             document.getElementById('releases').innerHTML = releasesHtml;
