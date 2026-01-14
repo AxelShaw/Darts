@@ -2,4 +2,5 @@ TODO LIST - Darts App
 ======================
 
 Améliorer upload serveur et vitesse serveur
-ia description cloneManage / https://openrouter.ai/provider/openai
+ia description cloneManage / https://openrouter.ai/provider/openai / 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
+
