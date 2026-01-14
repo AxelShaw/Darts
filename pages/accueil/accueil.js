@@ -10,7 +10,6 @@ class Accueil extends Page {
     static async onOpen() {
         let html = '<div class="page-header">';
         html += '<h1>Accueil</h1>';
-        html += '<p>Bienvenue dans l\'application Darts !</p>';
         html += '</div>';
         
         html += '<div class="accueil-content">';
