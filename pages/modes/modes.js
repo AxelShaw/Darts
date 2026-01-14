@@ -11,21 +11,21 @@ class Modes extends Page {
         {
             id: '301',
             name: '301',
-            description: 'Partez de 301 points et atteignez exactement 0.',
+            description: 'Partez de 301 points et atteignez exactement 0',
             icon: '🎯',
             color: '#3498db'
         },
         {
             id: '501',
             name: '501',
-            description: 'Partez de 501 points et atteignez exactement 0.',
+            description: 'Partez de 501 points et atteignez exactement 0',
             icon: '🏆',
             color: '#e74c3c'
         },
         {
             id: 'cricket',
             name: 'Cricket',
-            description: 'Fermez les numéros 15 à 20 et le bullseye.',
+            description: 'Fermez les numéros 15 à 20 et le bullseye',
             icon: '🦗',
             color: '#27ae60'
         }
