@@ -98,3 +98,34 @@ body {
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
+
+/* Accueil Content */
+.accueil-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+}
+
+.accueil-welcome {
+    text-align: center;
+    padding: 40px;
+}
+
+.accueil-img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.accueil-welcome h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.accueil-welcome p {
+    color: #666;
+    margin-bottom: 30px;
+}

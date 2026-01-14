@@ -7,12 +7,16 @@
     <title><?= APP_NAME ?></title>
     <link rel="stylesheet" href="pages/accueil/accueil.css">
     <link rel="stylesheet" href="pages/changelog/changelog.css">
+    <link rel="stylesheet" href="pages/modes/modes.css">
 </head>
 <body>
     <div id="sidebar">
         <div class="logo"><?= APP_NAME ?></div>
         <div class="nav-item active" data-page="Accueil" onclick="App.showPage('Accueil')">
             Accueil
+        </div>
+        <div class="nav-item" data-page="Modes" onclick="App.showPage('Modes')">
+            Jouer
         </div>
         <div class="sidebar-bottom">
             <div class="nav-item" data-page="Changelog" onclick="App.showPage('Changelog')">
@@ -32,6 +36,7 @@
     <script src="pages/app.js"></script>
     <script src="pages/accueil/accueil.js"></script>
     <script src="pages/changelog/changelog.js"></script>
+    <script src="pages/modes/modes.js"></script>
     <script>
         App.init();
         

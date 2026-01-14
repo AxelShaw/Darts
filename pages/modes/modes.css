@@ -1,0 +1,94 @@
+/* Modes Grid */
+.modes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+}
+
+/* Mode Card */
+.mode-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid #eee;
+    position: relative;
+    overflow: hidden;
+}
+
+.mode-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--mode-color);
+}
+
+.mode-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--mode-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.mode-icon {
+    font-size: 3.5rem;
+    margin-bottom: 16px;
+}
+
+.mode-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.mode-description {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 24px;
+    min-height: 60px;
+}
+
+.mode-btn {
+    background: var(--mode-color);
+    color: #fff;
+    border: none;
+    padding: 12px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mode-btn:hover {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+}
+
+/* Back Button */
+.modes-back {
+    margin-top: 40px;
+}
+
+.btn-back {
+    background: transparent;
+    color: #666;
+    border: 2px solid #ddd;
+    padding: 10px 24px;
+    font-size: 0.95rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+    border-color: #999;
+    color: #333;
+}
